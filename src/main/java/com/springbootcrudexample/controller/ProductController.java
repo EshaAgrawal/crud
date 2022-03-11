@@ -105,8 +105,8 @@ public class ProductController {
         return "hello using rest template";
     }
 
-    @GetMapping("/helloFromAnother")
-    public String getHello() {
+    @GetMapping("/testTemplate")
+    public String testTemplate() {
         String url = "http://localhost:8080/hello";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(url, String.class);
