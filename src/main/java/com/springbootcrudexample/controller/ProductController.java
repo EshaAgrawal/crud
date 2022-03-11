@@ -1,5 +1,5 @@
 package com.springbootcrudexample.controller;
-import com.springbootcrudexample.SpringBootCrudExampleApplication;
+
 import com.springbootcrudexample.entity.Product;
 import com.springbootcrudexample.exception.RecordNotFoundException;
 import com.springbootcrudexample.repository.ProductRepository;
@@ -13,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 @RestController
 public class ProductController {
