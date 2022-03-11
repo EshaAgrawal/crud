@@ -27,16 +27,16 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    private static final Logger logger= LoggerFactory.getLogger(ProductController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 
     @PostMapping("/addProduct")
-    public Product addProduct(@RequestBody Product product){
+    public Product addProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
 
     @PostMapping("/addProducts")
-    public List<Product> addListOfProducts(@RequestBody List<Product> products){
+    public List<Product> addListOfProducts(@RequestBody List<Product> products) {
         return productService.saveProducts(products);
     }
 
@@ -54,9 +54,9 @@ public class ProductController {
 //
 //            return new ResponseEntity<List<EmployeeEntity>>(list, new HttpHeaders(), HttpStatus.OK);
 //        }
-        // if()
-        // Optional List<Product> products = productService.getProducts();
-       //if(!products.is)
+    // if()
+    // Optional List<Product> products = productService.getProducts();
+    //if(!products.is)
 //
 //        if (!products.isPresent())
 //            throw new StudentNotFoundException("id-" + id);
@@ -74,43 +74,52 @@ public class ProductController {
 
 
     @GetMapping("/getProductById/{id}")
-    public Product getProductById(@PathVariable int id){
+    public Product getProductById(@PathVariable int id) {
         logger.info("Inside get product by id");
         return productService.getProductById(id);
     }
+
     @GetMapping("/getProductByName/{name}")
-    public  Product getProductByName(@PathVariable String name){
+    public Product getProductByName(@PathVariable String name) {
 
         return productService.getProductByName(name);
     }
+
     @DeleteMapping("/deleteProductById/{id}")
-    public String deleteProductById(@PathVariable int id){
-        return  productService.deleteProduct(id);
+    public String deleteProductById(@PathVariable int id) {
+        return productService.deleteProduct(id);
     }
+
     @PutMapping("/updateProduct")
-    public Product updateProduct(@RequestBody Product product){
-        return  productService.updateProduct(product);
+    public Product updateProduct(@RequestBody Product product) {
+        return productService.updateProduct(product);
     }
+
     @GetMapping("/product/{id}")
-    public ResponseEntity<Product> fetchProductById( @PathVariable  int id){
+    public ResponseEntity<Product> fetchProductById(@PathVariable int id) {
         Product product = productRepository.findById(id).
-                orElseThrow(()-> new RecordNotFoundException("Product not exist with id " + id));
+                orElseThrow(() -> new RecordNotFoundException("Product not exist with id " + id));
         return ResponseEntity.ok(product);
 
     }
 
     @RequestMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "hello using rest template";
     }
 
     @GetMapping("/helloFromAnother")
-    public String getHello(){
+    public String getHello() {
         String url = "http://localhost:8080/hello";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(url, String.class);
         return result;
     }
+
+    @GetMapping("/sendEmail")
+    public String sendMail() {
+            return "Email send succesfully";
+}
 
 
 
